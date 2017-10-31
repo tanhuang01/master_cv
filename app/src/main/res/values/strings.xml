@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">master_cv</string>
+    <string name="l_01_flip_page">翻页效果</string>
+    <string name="l_02_histogram">直方图</string>
+    <string name="l_03_leaf_loading">加载树叶效果</string>
+</resources>
