@@ -1,90 +1,44 @@
 package com.congguangzi.master_cv.views._03_loadingView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * @author congguangzi (congspark@163.com) 2017/10/9.
+ * @author congguangzi (congspark@163.com) 2017/11/1.
  */
 
-public class LeafFactory {
-    private static final int MAX_LEAF = 8;
-    static final long LEAF_FLOAT_TIME = 3000;
-    static final long LEAF_ROTATE_TIME = 2000;
+class LeafFactory {
 
-    private long leafFloatTime = LEAF_FLOAT_TIME;
+    private static final int leafFloatTime = 2000;
 
-    Random random = new Random();
+    private int addTime;
 
-    public Random getRandom() {
-        return random;
+    private static final int MAX_LEAFS = 8;
+    private Random random = new Random();
+
+    // 生成一个叶子信息
+    private Leaf generateLeaf() {
+        Leaf leaf = new Leaf();
+        leaf.type = random.nextInt(3);
+        leaf.rotateAngle = random.nextInt(360);
+        leaf.rotateDirection = random.nextInt(2);
+        // 为了产生交错的感觉，让开始的时间有一定的随机性
+        addTime += random.nextInt((leafFloatTime * 2));
+        leaf.startTime = System.currentTimeMillis() + addTime;
+        return leaf;
     }
 
-    public void setRandom(Random random) {
-        this.random = random;
+    List<Leaf> generateLeafs() {
+        return generateLeafs(MAX_LEAFS);
     }
 
-    // 最大数量产生叶子信息
-    public List<Leaf> generateLeafs() {
-        return generateLeafs(MAX_LEAF);
-    }
-
-    // 传入的数量产生叶子信息
-    public List<Leaf> generateLeafs(int leafSize) {
-        int size = leafSize > MAX_LEAF ? MAX_LEAF : leafSize;
-        List<Leaf> leafs = new ArrayList<>(leafSize);
-        for (int i = 0; i < size; i++) {
+    private List<Leaf> generateLeafs(int leafSize) {
+        List<Leaf> leafs = new ArrayList<>();
+        for (int i = 0; i < leafSize; i++) {
             leafs.add(generateLeaf());
         }
         return leafs;
     }
-
-    // 一个叶子信息
-    public Leaf generateLeaf() {
-        Leaf leaf = new Leaf.Builder()
-                .setType(getType())
-                .setRotateAngle(random.nextInt(360))
-                .setRotateDirection(getRotateDirection())
-                .setStartTime(getStartTime())
-                .build();
-        return leaf;
-    }
-
-    private Leaf.StartType getType() {
-        int swingType = random.nextInt(3);
-        Leaf.StartType type = Leaf.StartType.MIDDLE;
-        switch (swingType) {
-            case 0:
-                type = Leaf.StartType.MIDDLE;
-                break;
-            case 1:
-                type = Leaf.StartType.LITTLE;
-                break;
-            case 2:
-                type = Leaf.StartType.BIG;
-                break;
-        }
-        return type;
-    }
-
-    private Leaf.RotateDirection getRotateDirection() {
-        int rotateDirection = random.nextInt(2);
-        Leaf.RotateDirection direction = Leaf.RotateDirection.CLOCKWISE;
-        switch (rotateDirection) {
-            case 0:
-                direction = Leaf.RotateDirection.CLOCKWISE;
-                break;
-            case 1:
-                direction = Leaf.RotateDirection.ANTICLOCKWISE;
-                break;
-        }
-        return direction;
-    }
-
-    private long getStartTime() {
-        leafFloatTime = leafFloatTime < 0 ? LEAF_FLOAT_TIME : leafFloatTime;
-        return System.currentTimeMillis() + random.nextInt((int) leafFloatTime * 2);
-    }
-
 }

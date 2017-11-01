@@ -1,88 +1,38 @@
 package com.congguangzi.master_cv.views._03_loadingView;
 
 /**
- *
- *
- * @author congguangzi (congspark@163.com) 2017/10/9.
+ * @author congguangzi (congspark@163.com) 2017/11/1.
  */
 
-public class Leaf {
+class Leaf {
 
-    // 叶子飘入振幅
-    enum StartType {
-        LITTLE, MIDDLE, BIG,
-    }
+    // 叶子振幅.
+    static final int BIG = 0;
+    static final int NORMAL = 1;
+    static final int SMALL = 2;
 
-    enum RotateDirection {
-        CLOCKWISE, ANTICLOCKWISE;
-    }
-    // 位置
+    /**
+     * 叶子在界面上的位置.
+     */
     float x, y;
 
-    // 飘入震动幅度
-    StartType type;
+    /**
+     * 控制叶子飘动的幅度
+     */
+    int type;
 
-    // 旋转角度
+    /**
+     * 飘动过程中旋转角度
+     */
     int rotateAngle;
 
-    // 旋转方向
-    RotateDirection rotateDirection;
+    /**
+     * 旋转方向 0-顺时针; 1-逆时针
+     */
+    int rotateDirection;
 
-    // 起始时间
+    /**
+     * 起始时间
+     */
     long startTime;
-
-    public Leaf(Builder builder) {
-        x = builder.x;
-        y = builder.y;
-        type = builder.type;
-        rotateAngle = builder.rotateAngle;
-        rotateDirection = builder.rotateDirection;
-        startTime = builder.startTime;
-    }
-
-    public static final class Builder {
-        float x, y;
-        StartType type;
-        int rotateAngle;
-        RotateDirection rotateDirection;
-        long startTime;
-
-        public Builder() {
-        }
-
-        public Builder setX(float x) {
-            this.x = x;
-            return this;
-        }
-
-        public Builder setY(float y) {
-            this.y = y;
-            return this;
-        }
-
-        public Builder setType(StartType type) {
-            this.type = type;
-            return this;
-        }
-
-        public Builder setRotateAngle(int rotateAngle) {
-            this.rotateAngle = rotateAngle;
-            return this;
-        }
-
-        public Builder setRotateDirection(RotateDirection rotateDirection) {
-            this.rotateDirection = rotateDirection;
-            return this;
-        }
-
-        public Builder setStartTime(long startTime) {
-            this.startTime = startTime;
-            return this;
-        }
-
-        public Leaf build() {
-            return new Leaf(this);
-        }
-    }
-
 }

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -17,6 +18,9 @@ import android.view.animation.LinearInterpolator;
 
 import com.congguangzi.master_cv.R;
 
+import java.util.List;
+import java.util.Random;
+
 /**
  * 自定义进度条加载类.
  *
@@ -24,6 +28,9 @@ import com.congguangzi.master_cv.R;
  */
 
 public class LeafLoadingView extends View {
+
+    private static final String TAG = "LeafLoadingView";
+
 
     private final float TOTAL_PROGRESS = 100f;
 
@@ -37,39 +44,67 @@ public class LeafLoadingView extends View {
     private int loadingBarRight;
     private int loadingBarHeight;
 
-    // 两侧圆形的半径.
+    /**
+     * 两侧圆形的半径.
+     */
     private int radius;
 
+    /**
+     * 进度条中间的长方形部分.
+     */
     private RectF loadingBarRect;
-    private RectF leftArcRect;
-    private RectF rightFanRect;
 
-    // 进度条整体长度, 包括左侧半圆和中间矩形.
+    /**
+     * 进度条左侧半圆
+     */
+    private RectF leftArcRect;
+
+    /**
+     * 进度条长度, 包括左侧半圆和中间矩形.
+     */
     private int totalLoadingLength;
 
-    // 进度条颜色, 文字颜色.
+    /**
+     * 进度条颜色, 叶子, 文字颜色.
+     */
     private Paint orangePaint;
-    // 进度条背景颜色.
+
+    /**
+     * 进度条背景颜色.
+     */
     private Paint lightWhitePaint;
 
-    // 圆圈及其他部分绘制
+    /**
+     * 圆圈及其他部分绘制
+     */
     private Paint whitePaint;
 
-    // 进度 0 - 100.
+    /**
+     * 进度 0 - 100.
+     */
     private int progress;
 
-    // 限制绘制区域. 主要用于进度条的左侧半圆部分.
+    /**
+     * 限制绘制区域. 主要用于进度条的左侧半圆部分.
+     */
     private Path clipPath;
 
-    // 右侧风扇
     private Bitmap fanBitmap;
 
-    // 风扇对应的动画
     private ObjectAnimator fanAnimator;
 
-    // 风扇转动角度.
-    private int degree;
+    private int fanDegree;
 
+
+    private Bitmap leafBitmap;
+
+    private float amplitude = 13f;
+
+    private float disparity = 8f;
+
+    private float leafFloatTime = 2000;
+
+    private List<Leaf> leaves;
 
     {
         orangePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -88,7 +123,9 @@ public class LeafLoadingView extends View {
         clipPath = new Path();
 
         fanBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.leaf_loading_fan);
+        leafBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.leaf);
 
+        leaves = new LeafFactory().generateLeafs();
     }
 
     public LeafLoadingView(Context context) {
@@ -108,17 +145,18 @@ public class LeafLoadingView extends View {
     }
 
     public void setProgress(int progress) {
+        // 通过风扇属性动画的 invalidate() 方法重绘, 这里不需要再调用了.
+//        invalidate();
         this.progress = progress;
-        invalidate();
     }
 
-    public int getDegree() {
-        return degree;
+    public int getFanDegree() {
+        return fanDegree;
     }
 
-    public void setDegree(int degree) {
+    public void setFanDegree(int fanDegree) {
         invalidate();
-        this.degree = degree;
+        this.fanDegree = fanDegree;
     }
 
     @Override
@@ -145,11 +183,6 @@ public class LeafLoadingView extends View {
                 centerY - radius,
                 loadingBarLeft + radius,
                 centerY + radius);
-        // 右边风扇
-        rightFanRect = new RectF(loadingBarRight - radius,
-                centerY - radius,
-                loadingBarRight + radius,
-                centerY + radius);
 
         // 计算出整个进度条的宽度.
         totalLoadingLength = radius + (loadingBarRight - loadingBarLeft);
@@ -171,7 +204,7 @@ public class LeafLoadingView extends View {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        fanAnimator = ObjectAnimator.ofInt(this, "degree", 1, 360);
+        fanAnimator = ObjectAnimator.ofInt(this, "fanDegree", 1, 360);
         fanAnimator.setInterpolator(new LinearInterpolator());
         fanAnimator.setDuration(3000).setRepeatCount(ValueAnimator.INFINITE);
         fanAnimator.start();
@@ -194,6 +227,9 @@ public class LeafLoadingView extends View {
         canvas.drawRect(loadingBarRect, lightWhitePaint);
         canvas.drawArc(leftArcRect, 90, 180, false, lightWhitePaint);
 
+        // 绘制叶子
+        drawLeafs(canvas);
+
         // 进度条的绘制.
         drawLoading(canvas);
 
@@ -203,8 +239,72 @@ public class LeafLoadingView extends View {
 
         // 绘制风扇
         drawFan(canvas);
-
     }
+
+    private void drawLeafs(Canvas canvas) {
+        long currentTime = System.currentTimeMillis();
+        for (int i = 0; i < leaves.size(); i++) {
+            Leaf leaf = leaves.get(i);
+            if (currentTime > leaf.startTime && leaf.startTime != 0) {
+                getLeafLocation(leaf, currentTime);
+                canvas.save();
+                canvas.clipPath(clipPath);
+
+                Matrix matrix = new Matrix();
+                float transX = loadingBarLeft - radius + leaf.x;
+                float transY = centerY + leaf.y;
+                matrix.postTranslate(transX, transY);
+
+                float rotateFraction = ((currentTime - leaf.startTime) % leafFloatTime) / leafFloatTime;
+                int angle = (int) (rotateFraction * 360);
+
+                int rotate = leaf.rotateDirection == 0 ? angle + leaf.rotateAngle : -angle
+                        + leaf.rotateAngle;
+                matrix.postRotate(rotate, transX
+                        + leafBitmap.getWidth() / 2, transY + leafBitmap.getHeight() / 2);
+                canvas.drawBitmap(leafBitmap, matrix, orangePaint);
+                canvas.restore();
+            } else {
+                continue;
+            }
+        }
+    }
+
+    private void getLeafLocation(Leaf leaf, long currentTime) {
+        long intervalTime = currentTime - leaf.startTime;
+        if (intervalTime < 0) {
+            return;
+        } else if (intervalTime > leafFloatTime) {
+            leaf.startTime = System.currentTimeMillis()
+                    + new Random().nextInt((int) leafFloatTime);
+        }
+
+        float fraction = (float) intervalTime / leafFloatTime;
+        leaf.x = (int) (totalLoadingLength - totalLoadingLength * fraction);
+        leaf.y = getLocationY(leaf);
+    }
+
+    // 通过叶子信息获取当前叶子的Y值
+    private int getLocationY(Leaf leaf) {
+        // y = A(wx+Q)+h
+        float w = (float) ((float) 2 * Math.PI / totalLoadingLength);
+        float a = amplitude;
+        switch (leaf.type) {
+            case Leaf.SMALL:
+                a = amplitude - disparity;
+                break;
+            case Leaf.NORMAL:
+                a = amplitude;
+                break;
+            case Leaf.BIG:
+                a = amplitude + disparity;
+                break;
+            default:
+                break;
+        }
+        return (int) (a * Math.sin(w * leaf.x));
+    }
+
 
     private void drawLoading(Canvas canvas) {
         canvas.save();
@@ -219,13 +319,11 @@ public class LeafLoadingView extends View {
 
     private void drawFan(Canvas canvas) {
         canvas.save();
-        canvas.rotate(degree, loadingBarRight, centerY);
+        canvas.rotate(fanDegree, loadingBarRight, centerY);
         canvas.drawBitmap(fanBitmap,
                 loadingBarRect.right - radius + whitePaint.getStrokeWidth(),
                 loadingBarRect.top + whitePaint.getStrokeWidth(),
                 whitePaint);
         canvas.restore();
     }
-
-
 }
