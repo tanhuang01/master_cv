@@ -29,9 +29,6 @@ import java.util.Random;
 
 public class LeafLoadingView extends View {
 
-    private static final String TAG = "LeafLoadingView";
-
-
     private final float TOTAL_PROGRESS = 100f;
 
     private int height;
@@ -106,6 +103,8 @@ public class LeafLoadingView extends View {
 
     private List<Leaf> leaves;
 
+    private Random random;
+
     {
         orangePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         orangePaint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -126,6 +125,7 @@ public class LeafLoadingView extends View {
         leafBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.leaf);
 
         leaves = new LeafFactory().generateLeafs();
+        random = new Random();
     }
 
     public LeafLoadingView(Context context) {
@@ -272,21 +272,17 @@ public class LeafLoadingView extends View {
 
     private void getLeafLocation(Leaf leaf, long currentTime) {
         long intervalTime = currentTime - leaf.startTime;
-        if (intervalTime < 0) {
-            return;
-        } else if (intervalTime > leafFloatTime) {
+        if (intervalTime > leafFloatTime) {
             leaf.startTime = System.currentTimeMillis()
-                    + new Random().nextInt((int) leafFloatTime);
+                    + random.nextInt((int) leafFloatTime);
         }
-
         float fraction = (float) intervalTime / leafFloatTime;
         leaf.x = (int) (totalLoadingLength - totalLoadingLength * fraction);
         leaf.y = getLocationY(leaf);
     }
 
-    // 通过叶子信息获取当前叶子的Y值
+
     private int getLocationY(Leaf leaf) {
-        // y = A(wx+Q)+h
         float w = (float) ((float) 2 * Math.PI / totalLoadingLength);
         float a = amplitude;
         switch (leaf.type) {
