@@ -43,7 +43,7 @@ public class LeafFrameLayout extends FrameLayout {
             @Override
             public void onClick(View v) {
                 ObjectAnimator.ofInt(loadingView, "progress", 0, 100)
-                        .setDuration(5000)
+                        .setDuration(8000)
                         .start();
             }
         });

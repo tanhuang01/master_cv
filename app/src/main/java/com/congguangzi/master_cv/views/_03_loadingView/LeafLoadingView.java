@@ -88,8 +88,6 @@ public class LeafLoadingView extends View {
 
     private Bitmap fanBitmap;
 
-    private ObjectAnimator fanAnimator;
-
     private int fanDegree;
 
 
@@ -145,8 +143,7 @@ public class LeafLoadingView extends View {
     }
 
     public void setProgress(int progress) {
-        // 通过风扇属性动画的 invalidate() 方法重绘, 这里不需要再调用了.
-//        invalidate();
+        invalidate();
         this.progress = progress;
     }
 
@@ -201,23 +198,6 @@ public class LeafLoadingView extends View {
         fanBitmap = tempBitmap;
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        fanAnimator = ObjectAnimator.ofInt(this, "fanDegree", 1, 360);
-        fanAnimator.setInterpolator(new LinearInterpolator());
-        fanAnimator.setDuration(3000).setRepeatCount(ValueAnimator.INFINITE);
-        fanAnimator.start();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (fanAnimator != null) {
-            fanAnimator.reverse();
-            fanAnimator = null;
-        }
-    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -315,7 +295,7 @@ public class LeafLoadingView extends View {
 
     private void drawFan(Canvas canvas) {
         canvas.save();
-        canvas.rotate(fanDegree, loadingBarRight, centerY);
+        canvas.rotate(progress * 12, loadingBarRight, centerY);
         canvas.drawBitmap(fanBitmap,
                 loadingBarRect.right - radius + whitePaint.getStrokeWidth(),
                 loadingBarRect.top + whitePaint.getStrokeWidth(),
