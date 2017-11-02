@@ -43,6 +43,11 @@ public class _01_FlipView extends View {
 
     {
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
+        Bitmap tempBitmap = Bitmap.createScaledBitmap(bitmap,
+                bitmap.getWidth() << 1,
+                bitmap.getHeight() << 1, true);
+        bitmap.recycle();
+        bitmap = tempBitmap;
 
         animator.setDuration(2500);
         animator.setInterpolator(new LinearInterpolator());
@@ -97,6 +102,7 @@ public class _01_FlipView extends View {
         }
         camera.save();
         camera.rotateX(degree);
+        camera.setLocation(0, 0, -20);
         canvas.translate(centerX, centerY);
         camera.applyToCanvas(canvas);
         canvas.translate(-centerX, -centerY);
