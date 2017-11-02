@@ -1,7 +1,5 @@
 package com.congguangzi.master_cv.views._03_loadingView;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,12 +12,11 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 
 import com.congguangzi.master_cv.R;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * 自定义进度条加载类.
@@ -66,6 +63,7 @@ public class LeafLoadingView extends View {
      */
     private Paint orangePaint;
 
+
     /**
      * 进度条背景颜色.
      */
@@ -93,15 +91,17 @@ public class LeafLoadingView extends View {
 
     private Bitmap leafBitmap;
 
-    private float amplitude = 13f;
+    // 叶子按照正弦函数飘动轨迹的振幅.
+    private float amplitude;
 
-    private float disparity = 8f;
+    // 叶子按照正弦函数轨迹飘动的振幅偏差.
+    private float disparity;
 
     private float leafFloatTime = 2000;
 
     private List<Leaf> leaves;
 
-    private Random random;
+    private int leavesCount = 0;
 
     {
         orangePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -122,8 +122,7 @@ public class LeafLoadingView extends View {
         fanBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.leaf_loading_fan);
         leafBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.leaf);
 
-        leaves = new LeafFactory().generateLeafs();
-        random = new Random();
+        leaves = new ArrayList<>(20);
     }
 
     public LeafLoadingView(Context context) {
@@ -143,8 +142,12 @@ public class LeafLoadingView extends View {
     }
 
     public void setProgress(int progress) {
-        invalidate();
+        // 每调用 5 次, 添加一片叶子.
+        if ((leavesCount++) % 15 == 0) {
+            leaves.add(Leaf.generateLeaf());
+        }
         this.progress = progress;
+        invalidate();
     }
 
     public int getFanDegree() {
@@ -196,12 +199,20 @@ public class LeafLoadingView extends View {
                 (radius - ((int) whitePaint.getStrokeWidth())) << 1, true);
         fanBitmap.recycle();
         fanBitmap = tempBitmap;
+
+        amplitude = radius >> 1;
+        disparity = radius >> 2;
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        // 绘制文字
+        orangePaint.setTextSize(80);
+        orangePaint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText("Loading...", centerX, height >>> 2, orangePaint);
 
         // 基本背景. 中间矩形, 两侧圆形图案.
         canvas.drawRect(loadingBarRect, lightWhitePaint);
@@ -223,7 +234,7 @@ public class LeafLoadingView extends View {
 
     private void drawLeafs(Canvas canvas) {
         long currentTime = System.currentTimeMillis();
-        for (int i = 0; i < leaves.size(); i++) {
+        for (int i = leaves.size() - 1; i >= 0; i--) {
             Leaf leaf = leaves.get(i);
             if (currentTime > leaf.startTime && leaf.startTime != 0) {
                 getLeafLocation(leaf, currentTime);
@@ -232,7 +243,7 @@ public class LeafLoadingView extends View {
 
                 Matrix matrix = new Matrix();
                 float transX = loadingBarLeft - radius + leaf.x;
-                float transY = centerY + leaf.y;
+                float transY = centerY + leaf.y - (leafBitmap.getHeight() >> 1);
                 matrix.postTranslate(transX, transY);
 
                 float rotateFraction = ((currentTime - leaf.startTime) % leafFloatTime) / leafFloatTime;
@@ -247,16 +258,19 @@ public class LeafLoadingView extends View {
             } else {
                 continue;
             }
+            // 飘到左侧不在绘制.
+            if (leaf.x < 5) {
+                leaves.remove(leaf);
+            }
         }
     }
 
     private void getLeafLocation(Leaf leaf, long currentTime) {
         long intervalTime = currentTime - leaf.startTime;
         if (intervalTime > leafFloatTime) {
-            leaf.startTime = System.currentTimeMillis()
-                    + random.nextInt((int) leafFloatTime);
+            leaf.startTime = currentTime;
         }
-        float fraction = (float) intervalTime / leafFloatTime;
+        float fraction = intervalTime / leafFloatTime;
         leaf.x = (int) (totalLoadingLength - totalLoadingLength * fraction);
         leaf.y = getLocationY(leaf);
     }
