@@ -1,4 +1,4 @@
-package com.congguangzi.master_cv.views._03_loadingView;
+package com.congguangzi.master_cv.views._03_loading_view;
 
 import java.util.Random;
 

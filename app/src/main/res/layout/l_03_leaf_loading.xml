@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.congguangzi.master_cv.views._03_loadingView.LeafFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.congguangzi.master_cv.views._03_loading_view.LeafFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.congguangzi.master_cv.views._03_loadingView.LeafLoadingView
+    <com.congguangzi.master_cv.views._03_loading_view.LeafLoadingView
         android:id="@+id/leaf_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,4 +16,4 @@
         android:layout_gravity="right|bottom"
         android:text="start" />
 
-</com.congguangzi.master_cv.views._03_loadingView.LeafFrameLayout>
+</com.congguangzi.master_cv.views._03_loading_view.LeafFrameLayout>

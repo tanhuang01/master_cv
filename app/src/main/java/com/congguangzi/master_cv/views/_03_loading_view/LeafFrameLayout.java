@@ -1,4 +1,4 @@
-package com.congguangzi.master_cv.views._03_loadingView;
+package com.congguangzi.master_cv.views._03_loading_view;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -39,15 +39,16 @@ public class LeafFrameLayout extends FrameLayout {
         loadingView = (LeafLoadingView) findViewById(R.id.leaf_loading);
         bt = (Button) findViewById(R.id.bt_start_anim);
 
-        bt.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ObjectAnimator.ofInt(loadingView, "progress", 0, 100)
-                        .setDuration(8000)
-                        .start();
-            }
-        });
+        if (bt != null || loadingView != null) {
+            bt.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ObjectAnimator.ofInt(loadingView, "progress", 0, 100)
+                            .setDuration(8000)
+                            .start();
+                }
+            });
+        }
     }
-
 
 }
