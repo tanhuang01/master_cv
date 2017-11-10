@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 03_sophomore progress bar -->
+    <declare-styleable name="IndicatorProgressBar">
+        <attr name="progressIndicator" format="reference" />
+        <attr name="offset" format="dimension" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="reference|color" />
+        <attr name="textStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="textAlgin">
+            <flag name="left" value="0" />
+            <flag name="center" value="1" />
+            <flag name="right" value="2" />
+        </attr>
+    </declare-styleable>
+    <!-- end 03 sophomore progress bar-->
+
+</resources>

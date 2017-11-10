@@ -13,24 +13,26 @@ import android.widget.ProgressBar;
 
 import com.congguangzi.master_cv.R;
 
+import org.xml.sax.helpers.AttributesImpl;
+
 /**
- * @author congguangzi (congspark@163.com) 2017/11/8.
+ * @author congguangzi (congspark@163.com) 2017/11/10.
  */
 
-public class ProgressFrameLayout extends FrameLayout {
+public class ProgressSophomoreLayout extends FrameLayout {
 
-    ProgressBar bar;
     Button bt;
+    ProgressBar bar;
 
-    public ProgressFrameLayout(@NonNull Context context) {
+    public ProgressSophomoreLayout(@NonNull Context context) {
         super(context);
     }
 
-    public ProgressFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ProgressSophomoreLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ProgressFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ProgressSophomoreLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -38,15 +40,14 @@ public class ProgressFrameLayout extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        bar = (ProgressBar) findViewById(R.id.progress_fresher);
-        bt = (Button) findViewById(R.id.bt_start_fresher);
-
+        bar = (ProgressBar) findViewById(R.id.progress_sophomore);
+        bt = (Button) findViewById(R.id.bt_start_sophomore);
         bt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 ObjectAnimator anim = ObjectAnimator.ofInt(bar, "progress", 0, 100);
-                anim.setDuration(3000);
                 anim.setInterpolator(new LinearInterpolator());
+                anim.setDuration(3000);
                 anim.start();
             }
         });
