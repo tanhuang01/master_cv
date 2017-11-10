@@ -16,7 +16,7 @@
             android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
             android:indeterminateOnly="false"
             android:mirrorForRtl="true"
-            android:progressDrawable="@drawable/progress_fresher_drawable" />
+            android:progressDrawable="@drawable/_03_progress_fresher_drawable" />
 
         <Button
             android:id="@+id/bt_start_anim"

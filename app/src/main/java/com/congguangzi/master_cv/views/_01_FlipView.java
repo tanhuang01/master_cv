@@ -42,7 +42,7 @@ public class _01_FlipView extends View {
     }
 
     {
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable._01_maps);
         Bitmap tempBitmap = Bitmap.createScaledBitmap(bitmap,
                 bitmap.getWidth() << 1,
                 bitmap.getHeight() << 1, true);

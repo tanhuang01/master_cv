@@ -45,7 +45,7 @@ public class ProgressFrameLayout extends FrameLayout {
             @Override
             public void onClick(View v) {
                 ObjectAnimator anim = ObjectAnimator.ofInt(bar, "progress", 0, 100);
-                anim.setDuration(2000);
+                anim.setDuration(3000);
                 anim.setInterpolator(new LinearInterpolator());
                 anim.start();
             }

@@ -119,8 +119,8 @@ public class LeafLoadingView extends View {
 
         clipPath = new Path();
 
-        fanBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.leaf_loading_fan);
-        leafBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.leaf);
+        fanBitmap = BitmapFactory.decodeResource(getResources(), R.drawable._02_leaf_loading_fan);
+        leafBitmap = BitmapFactory.decodeResource(getResources(), R.drawable._02_leaf);
 
         leaves = new ArrayList<>(20);
     }
