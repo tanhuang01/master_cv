@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         pageModels.add(new PageModel(R.layout.l_02_histogram, R.string.l_02_histogram));
         pageModels.add(new PageModel(R.layout.l_03_leaf_loading, R.string.l_03_leaf_loading));
         pageModels.add(new PageModel(R.layout.l_04_progress_fresher, R.string.l_04_progress_fresher));
+        pageModels.add(new PageModel(R.layout.l_05_sin_circle, R.string.l_05_sin_cricle));
     }
 
     @Override
