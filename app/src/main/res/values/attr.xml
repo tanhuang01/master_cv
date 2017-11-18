@@ -4,9 +4,9 @@
     <!-- 03_sophomore progress bar -->
     <declare-styleable name="IndicatorProgressBar">
         <attr name="progressIndicator" format="reference" />
-        <attr name="offset" format="dimension" />
         <attr name="textSize" format="dimension" />
         <attr name="textColor" format="reference|color" />
+        <attr name="offset" format="dimension" />
         <attr name="textStyle">
             <flag name="normal" value="0" />
             <flag name="bold" value="1" />
@@ -20,4 +20,11 @@
     </declare-styleable>
     <!-- end 03 sophomore progress bar-->
 
+    <!-- 06 raw text view -->
+    <declare-styleable name="RawTextView">
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:text" />
+    </declare-styleable>
+    <!-- end 06 raw text view -->
 </resources>

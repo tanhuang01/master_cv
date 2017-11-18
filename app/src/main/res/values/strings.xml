@@ -5,4 +5,9 @@
     <string name="l_03_leaf_loading">加载树叶效果</string>
     <string name="l_04_progress_fresher">指示进度条</string>
     <string name="l_05_sin_cricle">圆圈Sin函数</string>
+    <string name="l_06_raw_text">横向填充</string>
+    <string name="two">二货</string>
+    <string name="you_two">你是二货</string>
+    <string name="you_real_two">就你是二货</string>
+    <string name="you_such_a_two">你这个大二货</string>
 </resources>

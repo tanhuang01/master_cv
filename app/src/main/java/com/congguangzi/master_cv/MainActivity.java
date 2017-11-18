@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         pageModels.add(new PageModel(R.layout.l_03_leaf_loading, R.string.l_03_leaf_loading));
         pageModels.add(new PageModel(R.layout.l_04_progress_fresher, R.string.l_04_progress_fresher));
         pageModels.add(new PageModel(R.layout.l_05_sin_circle, R.string.l_05_sin_cricle));
+        pageModels.add(new PageModel(R.layout.l_06_raw_text_view, R.string.l_06_raw_text));
     }
 
     @Override

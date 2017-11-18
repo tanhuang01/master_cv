@@ -12,6 +12,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Switch
+            android:id="@+id/custom_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="16dp"
+            android:thumb="@drawable/l_04_switch_thumb_selector"
+            android:track="@drawable/l_04_switch_track_selector" />
+
         <ProgressBar
             android:id="@+id/progress_fresher"
             android:layout_width="match_parent"
