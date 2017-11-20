@@ -22,7 +22,10 @@ public class IndicatorProgressBar extends ProgressBar {
 
     private TextPaint textPaint;
     private Drawable indicatorDrawable;
+    private int textColor;
     private int offset = 5;
+    private int textStyle = 0;
+    private int textAlign = 0;
 
 
     public IndicatorProgressBar(Context context) {
@@ -36,8 +39,11 @@ public class IndicatorProgressBar extends ProgressBar {
     public IndicatorProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.IndicatorProgressBar, defStyleAttr, 0);
-        offset = array.getInt(R.styleable.IndicatorProgressBar_offset, 0);
         indicatorDrawable = array.getDrawable(R.styleable.IndicatorProgressBar_progressIndicator);
+        textColor = array.getColor(R.styleable.IndicatorProgressBar_textColor, Color.BLACK);
+        offset = array.getInt(R.styleable.IndicatorProgressBar_offset, 0);
+        textStyle = array.getType(R.styleable.IndicatorProgressBar_textStyle);
+        textAlign = array.getType(R.styleable.IndicatorProgressBar_textAlign);
         array.recycle();
     }
 

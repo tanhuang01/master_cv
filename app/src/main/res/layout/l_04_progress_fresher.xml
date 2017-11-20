@@ -16,7 +16,7 @@
             android:id="@+id/custom_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|top"
+            android:layout_gravity="center_horizontal|left"
             android:layout_marginTop="16dp"
             android:includeFontPadding="false"
             android:thumb="@drawable/l_04_switch_thumb_selector"

@@ -12,7 +12,7 @@
             <flag name="bold" value="1" />
             <flag name="italic" value="2" />
         </attr>
-        <attr name="textAlgin">
+        <attr name="textAlign">
             <flag name="left" value="0" />
             <flag name="center" value="1" />
             <flag name="right" value="2" />
@@ -22,9 +22,9 @@
 
     <!-- 06 raw text view -->
     <declare-styleable name="RawTextView">
-        <attr name="android:textSize" />
-        <attr name="android:textColor" />
-        <attr name="android:text" />
+        <attr name="textSize" />
+        <attr name="textColor" />
+        <attr name="text" format="string" />
     </declare-styleable>
     <!-- end 06 raw text view -->
 </resources>

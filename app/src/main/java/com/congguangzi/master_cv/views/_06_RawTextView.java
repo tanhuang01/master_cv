@@ -43,9 +43,9 @@ public class _06_RawTextView extends View {
     public _06_RawTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RawTextView, defStyleAttr, 0);
-        textSize = array.getDimensionPixelSize(R.styleable.RawTextView_android_textSize, 10);
-        textColor = array.getColor(R.styleable.RawTextView_android_textColor, Color.BLACK);
-        text = array.getString(R.styleable.RawTextView_android_text);
+        textSize = array.getDimensionPixelSize(R.styleable.RawTextView_textSize, 10);
+        textColor = array.getColor(R.styleable.RawTextView_textColor, Color.BLACK);
+        text = array.getString(R.styleable.RawTextView_text);
         array.recycle();
 
         textPaint.setColor(textColor);

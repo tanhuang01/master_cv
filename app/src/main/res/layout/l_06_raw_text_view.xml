@@ -12,11 +12,11 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:background="@android:color/white"
-        android:text="@string/two"
-        android:textColor="#000000"
-        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/tv2"
         app:layout_constraintTop_toTopOf="parent"
+        app:text="@string/two"
+        app:textColor="#000000"
+        app:textSize="16sp"
         tools:layout_editor_absoluteX="16dp" />
 
     <com.congguangzi.master_cv.views._06_RawTextView
@@ -24,32 +24,32 @@
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:background="@android:color/white"
-        android:text="@string/you_two"
-        android:textColor="#000000"
-        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/tv3"
-        app:layout_constraintTop_toBottomOf="@id/tv1" />
+        app:layout_constraintTop_toBottomOf="@id/tv1"
+        app:text="@string/you_two"
+        app:textColor="#000000"
+        app:textSize="16sp" />
 
     <com.congguangzi.master_cv.views._06_RawTextView
         android:id="@+id/tv3"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:background="@android:color/white"
-        android:text="@string/you_real_two"
-        android:textColor="#000000"
-        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/tv4"
-        app:layout_constraintTop_toBottomOf="@id/tv2" />
+        app:layout_constraintTop_toBottomOf="@id/tv2"
+        app:text="@string/you_real_two"
+        app:textColor="#000000"
+        app:textSize="16sp" />
 
     <com.congguangzi.master_cv.views._06_RawTextView
         android:id="@+id/tv4"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@android:color/white"
-        android:text="@string/you_such_a_two"
-        android:textColor="#000000"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv3" />
+        app:layout_constraintTop_toBottomOf="@id/tv3"
+        app:text="@string/you_such_a_two"
+        app:textColor="#000000"
+        app:textSize="16sp" />
 
 </android.support.constraint.ConstraintLayout>
