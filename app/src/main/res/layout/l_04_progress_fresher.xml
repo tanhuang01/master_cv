@@ -17,10 +17,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|left"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:includeFontPadding="false"
             android:thumb="@drawable/l_04_switch_thumb_selector"
             android:track="@drawable/l_04_switch_track_selector" />
+
+        <com.congguangzi.master_cv.views._04_progress_fresher.CountDownTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:text="获取" />
 
         <ProgressBar
             android:id="@+id/progress_fresher"
