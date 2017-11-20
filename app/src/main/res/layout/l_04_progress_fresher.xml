@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="16dp"
+            android:includeFontPadding="false"
             android:thumb="@drawable/l_04_switch_thumb_selector"
             android:track="@drawable/l_04_switch_track_selector" />
 
