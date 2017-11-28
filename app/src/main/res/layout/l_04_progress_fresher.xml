@@ -14,8 +14,8 @@
 
         <Switch
             android:id="@+id/custom_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
             android:layout_gravity="center_horizontal|left"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
@@ -67,6 +67,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline1">
+
+        <com.congguangzi.master_cv.views._04_progress_fresher.CustomSwitch
+            android:id="@+id/custom_switch_sophomore"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/l_04_switch_track_selector_sophomore" />
 
         <com.congguangzi.master_cv.views._04_progress_fresher.IndicatorProgressBar
             android:id="@+id/progress_sophomore"

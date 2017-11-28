@@ -8,8 +8,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.congguangzi.master_cv.R;
 
@@ -21,6 +24,7 @@ public class ProgressFrameLayout extends FrameLayout {
 
     ProgressBar bar;
     Button bt;
+    Switch aSwitch;
 
     public ProgressFrameLayout(@NonNull Context context) {
         super(context);
@@ -48,6 +52,15 @@ public class ProgressFrameLayout extends FrameLayout {
                 anim.setDuration(3000);
                 anim.setInterpolator(new LinearInterpolator());
                 anim.start();
+                aSwitch.setChecked(true);
+            }
+        });
+
+        aSwitch = (Switch) findViewById(R.id.custom_switch);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Toast.makeText(getContext(), "isChecked: " + isChecked, Toast.LENGTH_SHORT).show();
             }
         });
     }

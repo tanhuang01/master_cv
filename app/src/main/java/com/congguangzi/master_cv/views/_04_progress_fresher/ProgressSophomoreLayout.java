@@ -10,6 +10,8 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.congguangzi.master_cv.R;
 
@@ -23,6 +25,7 @@ public class ProgressSophomoreLayout extends FrameLayout {
 
     Button bt;
     ProgressBar bar;
+    CustomSwitch aSwitch;
 
     public ProgressSophomoreLayout(@NonNull Context context) {
         super(context);
@@ -49,7 +52,17 @@ public class ProgressSophomoreLayout extends FrameLayout {
                 anim.setInterpolator(new LinearInterpolator());
                 anim.setDuration(3000);
                 anim.start();
+                aSwitch.setChecked(true);
             }
         });
+
+        aSwitch = (CustomSwitch) findViewById(R.id.custom_switch_sophomore);
+        aSwitch.setOnCheckedChangeListener(new CustomSwitch.onCustomCheckedChangedListener() {
+            @Override
+            public void onCheckedChanged(View view, boolean checked) {
+                Toast.makeText(getContext(), "isChecked: " + checked, Toast.LENGTH_SHORT).show();
+            }
+        });
+        aSwitch.setChecked(true);
     }
 }

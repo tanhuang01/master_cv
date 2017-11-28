@@ -8,8 +8,17 @@ import android.util.DisplayMetrics;
  */
 
 public class ViewUtils {
+
     public static float dpToPixel(float dp) {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         return dp * metrics.density;
     }
+
+
+    public static int dpToPixel(int dp) {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        return (int) (dp * metrics.density);
+    }
+
+
 }
