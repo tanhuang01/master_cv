@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.congguangzi.master_cv.views._07_receipt_view.ReceiptViewConstrainLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
+
+        <com.congguangzi.master_cv.views._07_receipt_view.ReceiptView
+            android:id="@+id/receipt"
+            android:layout_width="180dp"
+            android:layout_height="200dp"
+            android:background="#55009900"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <Button
+            android:id="@+id/bt_empty_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0/1/2"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@id/bt_switch_witch"
+            app:layout_constraintLeft_toLeftOf="@id/bt_switch_witch"
+            app:layout_constraintRight_toRightOf="@id/bt_switch_witch"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/bt_switch_witch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="58/76/80"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_empty_line" />
+
+    </com.congguangzi.master_cv.views._07_receipt_view.ReceiptViewConstrainLayout>
+
+</FrameLayout>

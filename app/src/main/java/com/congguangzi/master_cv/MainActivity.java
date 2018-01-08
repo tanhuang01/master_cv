@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     List<PageModel> pageModels = new ArrayList<>();
 
     {
+        pageModels.add(new PageModel(R.layout.l_07_receipt_view, R.string.l_07_receipt_view));
         pageModels.add(new PageModel(R.layout.l_01_flip_view, R.string.l_01_flip_page));
         pageModels.add(new PageModel(R.layout.l_02_histogram, R.string.l_02_histogram));
         pageModels.add(new PageModel(R.layout.l_03_leaf_loading, R.string.l_03_leaf_loading));

@@ -28,6 +28,15 @@ public class PageFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        if (args != null) {
+            layoutRes = args.getInt(LAYOUT_RES);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,14 +46,5 @@ public class PageFragment extends Fragment {
         viewStub.setLayoutResource(layoutRes);
         viewStub.inflate();
         return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bundle args = getArguments();
-        if (args != null) {
-            layoutRes = args.getInt(LAYOUT_RES);
-        }
     }
 }
