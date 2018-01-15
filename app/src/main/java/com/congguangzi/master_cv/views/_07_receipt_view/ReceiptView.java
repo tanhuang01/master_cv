@@ -3,8 +3,10 @@ package com.congguangzi.master_cv.views._07_receipt_view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.congguangzi.master_cv.R;
 import com.congguangzi.master_cv.ViewUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -56,19 +59,28 @@ public class ReceiptView extends View {
         textPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextSize(ViewUtils.dpToPixel(12));
         textPaint.setTextAlign(Paint.Align.LEFT);
-//        textPaint.setTypeface(Typeface.MONOSPACE);
+
     }
 
     public ReceiptView(Context context) {
         super(context);
+        init();
     }
 
     public ReceiptView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public ReceiptView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.receipt_song);
+        textPaint.setTypeface(typeface);
+        titlePaint.setTypeface(typeface);
     }
 
     @Override
@@ -89,7 +101,7 @@ public class ReceiptView extends View {
         super.onDraw(canvas);
         canvas.drawText(title, centerX, titlePaint.getFontSpacing() * 2, titlePaint);
 
-        textPaint.setTextScaleX(0.9f);
+//        textPaint.setTextScaleX(0.9f);
         canvas.save();
         canvas.translate(0, getTitleHeight());
         staticLayout.draw(canvas);

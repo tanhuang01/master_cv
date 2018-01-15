@@ -21,6 +21,8 @@ public class ReceiptViewUtil {
             "12345678901234567890123456789012345678901234567890\n",
             "abcdefghijabcdefghijabcdefghijabcdefghijabcdefghij\n",
             "ABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJ\n",
+            "abcefghijklmnopqrstuvwxyz\n",
+            "ABCEFGHIJKLMNOPQRSTUVWXYZ\n",
     };
 
     /**
