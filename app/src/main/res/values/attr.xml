@@ -20,6 +20,7 @@
     </declare-styleable>
     <!-- end 03 sophomore progress bar-->
 
+
     <!-- 06 raw text view -->
     <declare-styleable name="RawTextView">
         <attr name="textSize" />
@@ -27,4 +28,18 @@
         <attr name="text" format="string" />
     </declare-styleable>
     <!-- end 06 raw text view -->
+
+
+    <!-- 08 TipTextView -->
+    <declare-styleable name="TextTipView">
+        <attr name="tip_textSize" format="dimension" />
+        <attr name="tip_textColor" format="color|reference" />
+        <attr name="tip_background" format="color|reference" />
+        <attr name="tip_position">
+            <flag name="RIGHT" value="0" />
+            <flag name="LEFT" value="1" />
+        </attr>
+    </declare-styleable>
+    <!-- 08 TipTextView End-->
+
 </resources>

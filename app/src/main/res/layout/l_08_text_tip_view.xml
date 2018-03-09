@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.congguangzi.master_cv.views._08_text_tip_view.TextTipViewConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.congguangzi.master_cv.views._08_text_tip_view.TextTipView
+        android:id="@+id/tv_tipText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="I am Text Tip"
+        android:textColor="@android:color/background_dark"
+        android:textSize="30sp"
+        app:tip_background="@android:color/holo_red_dark"
+        app:tip_textColor="@android:color/white"
+        app:tip_textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_msg_count"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@id/bt_send_broadcast"
+        app:layout_constraintLeft_toLeftOf="@id/bt_send_broadcast" />
+
+    <Button
+        android:id="@+id/bt_send_broadcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="send broadcast"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/bt_change_seleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:text="change selected"
+        app:layout_constraintLeft_toRightOf="@id/bt_send_broadcast"
+        app:layout_constraintTop_toTopOf="@id/bt_send_broadcast" />
+
+
+</com.congguangzi.master_cv.views._08_text_tip_view.TextTipViewConstraintLayout>
