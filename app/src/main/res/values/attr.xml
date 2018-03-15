@@ -35,9 +35,12 @@
         <attr name="tip_textSize" format="dimension" />
         <attr name="tip_textColor" format="color|reference" />
         <attr name="tip_background" format="color|reference" />
+        <attr name="tip_padding" format="dimension" />
         <attr name="tip_position">
-            <flag name="RIGHT" value="0" />
-            <flag name="LEFT" value="1" />
+            <flag name="right" value="1" />
+            <flag name="left" value="2" />
+            <flag name="top" value="4" />
+            <flag name="bottom" value="8" />
         </attr>
     </declare-styleable>
     <!-- 08 TipTextView End-->

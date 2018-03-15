@@ -13,6 +13,8 @@
         android:textColor="@android:color/background_dark"
         android:textSize="30sp"
         app:tip_background="@android:color/holo_red_dark"
+        app:tip_padding="4dp"
+        app:tip_position="top|right"
         app:tip_textColor="@android:color/white"
         app:tip_textSize="15sp" />
 
