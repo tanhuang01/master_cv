@@ -8,6 +8,7 @@
     <string name="l_06_raw_text">横向填充</string>
     <string name="l_07_receipt_view">单据样式</string>
     <string name="l_08_text_tip">提示圈</string>
+    <string name="l_09_gcssloop">GcsSloop</string>
 
     <!-- 横向填充文案 -->
     <string name="two">二货</string>
