@@ -11,7 +11,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
-<<<<<<< HEAD
  * 简介: 使用贝塞尔曲线实现圆的拉伸和回弹效果.
  * <p>
  * 目前仅仅支持水平方向上的拉伸和回弹, 如果是任意方向, 可以旋转 canvas
@@ -23,20 +22,13 @@ import android.view.View;
  * v1,v2, h1, h2 相关点的位置关系如图:
  * <p>
  * <img alt="the coordinate" src ="../../../../../../../../../img/_09_pic_coor.png" />
-=======
- * 简介:
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
  *
  * @author congguangzi (congspark@163.com) 2018/4/9.
  */
 public class BezierBoundCircleView extends View {
 
     // 贝塞尔曲线 [控制点与绘制点的距离] 和 [圆的半径] 的比例
-<<<<<<< HEAD
     private final float CUBIC_RATE = 0.551915f;
-=======
-    private final float CUBIC_RATE = 0.551915024494f;
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
 
     private Paint pathPaint;
 
@@ -48,7 +40,6 @@ public class BezierBoundCircleView extends View {
     // 绘制贝塞尔曲线控制点的连线
     private Paint linePaint;
 
-<<<<<<< HEAD
     // 坐标
     private Paint corPaint;
 
@@ -75,20 +66,6 @@ public class BezierBoundCircleView extends View {
     private int height;
     private int width;
 
-=======
-    // 坐标新
-    private Paint corPaint;
-
-    // 圆半径
-    private int radius;
-
-    private int height;
-    private int width;
-
-    // 水平平移
-    private float offsetX = 0f;
-
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
     // y 轴上的控制点
     private HorizontalBezierPoint h1, h2;
     // x 轴上的控制点
@@ -111,12 +88,9 @@ public class BezierBoundCircleView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         height = h;
         width = w;
-<<<<<<< HEAD
 
         // 水平方向上的移动距离暂定为 控件宽度 - 3 * radius
         moveDistance = w - (radius << 2);
-=======
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
     }
 
     {
@@ -138,7 +112,6 @@ public class BezierBoundCircleView extends View {
         corPaint.setColor(Color.RED);
         corPaint.setStrokeWidth(1);
 
-<<<<<<< HEAD
         // 相关参数暂时在代码中指定.
         radius = 100;
         stretchLength = radius;
@@ -149,19 +122,6 @@ public class BezierBoundCircleView extends View {
         h2 = new HorizontalBezierPoint();
         v1 = new VerticalBezierPoint();
         v2 = new VerticalBezierPoint();
-=======
-        // 暂时在代码中指定.
-        radius = 100;
-
-        h1 = new HorizontalBezierPoint(0, -radius);
-        h2 = new HorizontalBezierPoint(0, radius);
-        v1 = new VerticalBezierPoint(-radius, 0);
-        v2 = new VerticalBezierPoint(radius, 0);
-        h1.setControlPoint(radius);
-        h2.setControlPoint(radius);
-        v1.setControlPoint(radius);
-        v2.setControlPoint(radius);
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
 
         path = new Path();
     }
@@ -173,7 +133,6 @@ public class BezierBoundCircleView extends View {
 
         drawCoordinate(canvas);
 
-<<<<<<< HEAD
         // 不同状态的切换过度
         if (progress >= 0 && progress < 0.2) {
             model1(progress);
@@ -197,22 +156,13 @@ public class BezierBoundCircleView extends View {
         }
 
 
-=======
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
         // 贝塞尔曲线对应的圆
         drawBezierCurve(canvas);
 
         // 辅助点
-<<<<<<< HEAD
         drawPoint(canvas, h1.left, h1.right, h2.left, h2.right,
                 v1.top, v1.bottom, v2.top, v2.bottom);
 
-=======
-        drawPoint(canvas, h1.left, h1.right,
-                h2.left, h2.right,
-                v2.top, v2.bottom,
-                v1.top, v1.bottom);
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
 
         // 辅助线
         drawBezierLines(canvas, h1);
@@ -233,7 +183,6 @@ public class BezierBoundCircleView extends View {
 
     private void drawBezierCurve(Canvas canvas) {
         path.reset();
-<<<<<<< HEAD
         path.moveTo(v2.x, v2.y);
         path.cubicTo(v2.bottom.x, v2.bottom.y,
                 h2.right.x, h2.right.y,
@@ -247,32 +196,12 @@ public class BezierBoundCircleView extends View {
         path.cubicTo(h1.right.x, h1.right.y,
                 v2.top.x, v2.top.y,
                 v2.x, v2.y);
-=======
-        path.moveTo(v2.x + offsetX, v2.y);
-        // offsetX 为水平偏移量
-        path.cubicTo(v2.bottom.x + offsetX, v2.bottom.y,
-                h2.right.x + offsetX, h2.right.y,
-                h2.x + offsetX, h2.y);
-        path.cubicTo(h2.left.x + offsetX, h2.left.y,
-                v1.bottom.x + offsetX, v1.bottom.y,
-                v1.x + offsetX, v1.y);
-        path.cubicTo(v1.top.x + offsetX, v1.top.y,
-                h1.left.x + offsetX, h1.left.y,
-                h1.x + offsetX, h1.y);
-        path.cubicTo(h1.right.x + offsetX, h1.right.y,
-                v2.top.x + offsetX, v2.top.y,
-                v2.x + offsetX, v2.y);
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
         canvas.drawPath(path, pathPaint);
     }
 
     private void drawPoint(Canvas canvas, PointF... points) {
         for (PointF point : points) {
-<<<<<<< HEAD
             canvas.drawPoint(point.x, point.y, pointPaint);
-=======
-            canvas.drawPoint(point.x + offsetX, point.y, pointPaint);
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
         }
 
     }
@@ -281,18 +210,13 @@ public class BezierBoundCircleView extends View {
      * 绘制竖直方向上的辅助线
      */
     private void drawBezierLines(Canvas canvas, VerticalBezierPoint point) {
-<<<<<<< HEAD
         canvas.drawLine(point.top.x, point.top.y, point.bottom.x, point.bottom.y, linePaint);
-=======
-        canvas.drawLine(point.top.x + offsetX, point.top.y, point.bottom.x + offsetX, point.bottom.y, linePaint);
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
     }
 
     /**
      * 绘制水平方向的辅助线
      */
     private void drawBezierLines(Canvas canvas, HorizontalBezierPoint point) {
-<<<<<<< HEAD
         canvas.drawLine(point.left.x, point.left.y, point.right.x, point.right.y, linePaint);
     }
 
@@ -374,18 +298,6 @@ public class BezierBoundCircleView extends View {
         } else {
             this.progress = 0;
         }
-=======
-        canvas.drawLine(point.left.x + offsetX, point.left.y, point.right.x + offsetX, point.right.y, linePaint);
-    }
-
-    public float getOffsetX() {
-        return offsetX;
-    }
-
-    public void setOffsetX(float offsetX) {
-        this.offsetX = offsetX;
-        invalidate();
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
     }
 
     /**
@@ -397,13 +309,7 @@ public class BezierBoundCircleView extends View {
         float x, y;
         PointF top, bottom;
 
-<<<<<<< HEAD
         VerticalBezierPoint() {
-=======
-        VerticalBezierPoint(float x, float y) {
-            this.x = x;
-            this.y = y;
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
             top = new PointF();
             bottom = new PointF();
         }
@@ -411,7 +317,6 @@ public class BezierBoundCircleView extends View {
         void setControlPoint(float radius) {
             top.x = this.x;
             bottom.x = this.x;
-<<<<<<< HEAD
             top.y = this.y - c;
             bottom.y = this.y + c;
         }
@@ -430,10 +335,6 @@ public class BezierBoundCircleView extends View {
         void setOffsetY(float offsetY) {
             top.y -= offsetY;
             bottom.y += offsetY;
-=======
-            top.y = this.y - (CUBIC_RATE * radius);
-            bottom.y = this.y + (CUBIC_RATE * radius);
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
         }
     }
 
@@ -444,13 +345,7 @@ public class BezierBoundCircleView extends View {
         float x, y;
         PointF left, right;
 
-<<<<<<< HEAD
         public HorizontalBezierPoint() {
-=======
-        public HorizontalBezierPoint(float x, float y) {
-            this.x = x;
-            this.y = y;
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
             left = new PointF();
             right = new PointF();
         }
@@ -458,7 +353,6 @@ public class BezierBoundCircleView extends View {
         void setControlPoint(float radius) {
             left.y = this.y;
             right.y = this.y;
-<<<<<<< HEAD
             left.x = this.x - c;
             right.x = this.x + c;
         }
@@ -468,12 +362,6 @@ public class BezierBoundCircleView extends View {
             left.x += offsetX;
             right.x += offsetX;
         }
-=======
-            left.x = this.x - (CUBIC_RATE * radius);
-            right.x = this.x + (CUBIC_RATE * radius);
-        }
-
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
     }
 
 

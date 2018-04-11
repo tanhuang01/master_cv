@@ -48,13 +48,8 @@ public class BezierAnimationManagerFrameLayout extends FrameLayout {
 
                 // 添加平移动画
                 ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(bezierBoundCircleView,
-<<<<<<< HEAD
                         "progress", 0f, 1f);
                 objectAnimator.setDuration(5000);
-=======
-                        "offsetX", 0f, 600);
-                objectAnimator.setDuration(1000);
->>>>>>> ff608a6cb5df544961273a6b6d13ea8e7cc9d805
                 objectAnimator.start();
 
             }
