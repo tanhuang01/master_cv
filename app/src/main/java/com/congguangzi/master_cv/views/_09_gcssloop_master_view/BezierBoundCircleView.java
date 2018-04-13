@@ -21,7 +21,7 @@ import android.view.View;
  * <p>
  * v1,v2, h1, h2 相关点的位置关系如图:
  * <p>
- * <img alt="the coordinate" src ="../../../../../../../../../img/_09_pic_coor.png" />
+ * <img alt="the coordinate" src ="../../../../../../../../../pic/_09_pic_coor.png" />
  *
  * @author congguangzi (congspark@163.com) 2018/4/9.
  */
