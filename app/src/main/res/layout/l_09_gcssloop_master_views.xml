@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.congguangzi.master_cv.views._09_gcssloop_master_view.BezierAnimationManagerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.congguangzi.master_cv.views._09_bezier_view.BezierAnimationManagerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.congguangzi.master_cv.views._09_gcssloop_master_view.BezierBoundCircleView
+    <com.congguangzi.master_cv.views._09_bezier_view.BezierBoundCircleView
         android:id="@+id/bezier_bound_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -16,4 +16,4 @@
         android:layout_gravity="bottom|left"
         android:text="start" />
 
-</com.congguangzi.master_cv.views._09_gcssloop_master_view.BezierAnimationManagerFrameLayout>
+</com.congguangzi.master_cv.views._09_bezier_view.BezierAnimationManagerFrameLayout>

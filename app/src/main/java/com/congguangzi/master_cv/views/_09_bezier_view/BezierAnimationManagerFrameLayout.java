@@ -1,4 +1,4 @@
-package com.congguangzi.master_cv.views._09_gcssloop_master_view;
+package com.congguangzi.master_cv.views._09_bezier_view;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
