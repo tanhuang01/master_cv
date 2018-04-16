@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     List<PageModel> pageModels = new ArrayList<>();
 
     {
+        pageModels.add(new PageModel(R.layout.l_11_matrix, R.string.l_11_matrix));
         pageModels.add(new PageModel(R.layout.l_10_path_measure, R.string.l_10_path_measure));
         pageModels.add(new PageModel(R.layout.l_09_gcssloop_master_views, R.string.l_09_gcssloop));
         pageModels.add(new PageModel(R.layout.l_08_text_tip_view, R.string.l_08_text_tip));
