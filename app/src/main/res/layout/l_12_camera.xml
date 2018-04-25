@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.congguangzi.master_cv.views._12_camera.CameraTestFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.congguangzi.master_cv.views._12_camera.CameraTestView
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RadioGroup
+        android:id="@+id/rg_camera_coordinate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="x" />
+
+        <RadioButton
+            android:id="@+id/rb_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="y" />
+
+        <RadioButton
+            android:id="@+id/rb_z"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="z" />
+
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/bt_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:text="start" />
+</com.congguangzi.master_cv.views._12_camera.CameraTestFrameLayout>
