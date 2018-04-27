@@ -16,6 +16,8 @@ import android.view.View;
 /**
  * 简介: 自定义点击事件.
  *
+ * <b>NOTE:</b> 不支持 KeyEvent 事件.
+ *
  * @author congguangzi (congspark@163.com) 2018/4/26.
  */
 public class CircleClickView extends View {
