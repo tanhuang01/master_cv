@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     List<PageModel> pageModels = new ArrayList<>();
 
     {
+        pageModels.add(new PageModel(R.layout.l_16_fling_ball, R.string.l_16_fling_ball));
         pageModels.add(new PageModel(R.layout.l_15_multi_motion, R.string.l_15_multi_motion));
         pageModels.add(new PageModel(R.layout.l_14_circle_click, R.string.l_14_circle_click));
         pageModels.add(new PageModel(R.layout.l_13_region, R.string.l_13_region));

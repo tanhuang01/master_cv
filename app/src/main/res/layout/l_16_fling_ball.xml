@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.congguangzi.master_cv.views._15_multi_motion.MultiMotionView
+    <com.congguangzi.master_cv.views._16_fling_ball.FlingView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clickable="true" />
 
 </FrameLayout>
