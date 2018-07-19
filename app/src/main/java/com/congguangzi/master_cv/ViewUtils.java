@@ -21,4 +21,8 @@ public class ViewUtils {
     }
 
 
+    public static int cameraZLocation(int dp) {
+        return (int) (Resources.getSystem().getDisplayMetrics().density * dp);
+    }
+
 }
