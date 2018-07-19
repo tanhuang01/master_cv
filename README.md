@@ -19,3 +19,8 @@ custom view repository, just for exercising.
 
 ![](https://github.com/tanhuang01/master_cv/blob/master/pic/_10_path_measure.gif)
 
+### 17.图片文字
+
+&nbsp;&nbsp;&nbsp;&nbsp; 使用 Paint 的 breakText 功能来控制每一行的字符数; 通过 FontMetric 来测量每一行的高度. 并且对图片位置做处理.
+
+![](https://github.com/tanhuang01/master_cv/blob/master/pic/_17_text_pic.png)
