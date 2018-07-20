@@ -21,12 +21,12 @@ custom view repository, just for exercising.
 
 ### 17.图片文字
 
-&nbsp;&nbsp;&nbsp;&nbsp; 使用 Paint 的 breakText 功能来控制每一行的字符数; 通过 FontMetric 来测量每一行的高度. 并且对图片位置做处理.
+&nbsp;&nbsp;&nbsp;&nbsp; 使用 Paint 的 breakText 功能来控制每一行的字符数; 通过 FontMetric 来测量每一行的高度. 并且对图片位置做处理. 具体实现参考 *_17_CustomTextWithPicView* 代码
 
 ![](https://github.com/tanhuang01/master_cv/blob/master/pic/_17_text_pic.png)
 
 ### 18.图片动画特效(1)
 
-&nbsp;&nbsp;&nbsp;&nbsp; 这个图片特效感觉十分的给力, 所以就模仿了一下下.
+&nbsp;&nbsp;&nbsp;&nbsp; 这个图片特效感觉十分的给力, 所以就模仿了一下下. 具体实现 *_18_anim* 包下的代码.
 
 ![](https://github.com/tanhuang01/master_cv/blob/master/pic/_18_map_anim.gif)
