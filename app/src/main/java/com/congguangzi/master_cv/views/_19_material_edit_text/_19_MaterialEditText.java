@@ -1,9 +1,12 @@
 package com.congguangzi.master_cv.views._19_material_edit_text;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -37,9 +40,11 @@ public class _19_MaterialEditText extends AppCompatEditText {
 
     // move animation start y.
     private float labelPosY;
+    private float labelStartY;
 
     private Paint labelPaint;
     private int labelColor = LABEL_COLOR;
+    private int curColor;
     private float labelSize;
 
     private boolean labelShowed = false;
@@ -47,6 +52,7 @@ public class _19_MaterialEditText extends AppCompatEditText {
     private float labelAlpha = 0;
 
     private AnimatorSet showLabelAnimatorSet;
+    private AnimatorSet disappearAnimatorSet;
 
     public _19_MaterialEditText(Context context) {
         super(context);
@@ -54,6 +60,11 @@ public class _19_MaterialEditText extends AppCompatEditText {
 
     public _19_MaterialEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        TypedArray array = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.colorAccent});
+        int c = Color.parseColor("#7f03014f");
+        labelColor = array.getColor(0, Color.BLACK);
+        curColor = labelColor;
+        array.recycle();
     }
 
     public _19_MaterialEditText(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -68,21 +79,20 @@ public class _19_MaterialEditText extends AppCompatEditText {
             if (text.length() > 0 && !labelShowed) {
                 // add label
                 labelShowed = true;
-                getShowLabelAnimator().start();
+                getShowLabelAnim().start();
                 _19_MaterialEditText.this.setHint("");
             } else if (text.length() == 0 && labelShowed) {
                 // remove label
                 labelShowed = false;
-                getShowLabelAnimator().reverse();
+                getDisappearAnim().start();
             }
         }
     };
 
-    {
 
+    {
         labelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         labelPaint.setTextSize(LABEL_SIZE);
-
 
         setPadding(getPaddingLeft(), (int) (getPaddingTop() + LABEL_SIZE + LABEL_PADDING_BOTTOM),
                 getPaddingRight(), getPaddingBottom());
@@ -107,8 +117,9 @@ public class _19_MaterialEditText extends AppCompatEditText {
         super.onSizeChanged(w, h, oldw, oldh);
         width = w;
         height = h;
-        labelPosY = LABEL_PADDING_BOTTOM + LABEL_PADDING_TOP + LABEL_SIZE +
+        labelStartY = LABEL_PADDING_BOTTOM + LABEL_PADDING_TOP + LABEL_SIZE +
                 ((h - LABEL_PADDING_BOTTOM - LABEL_PADDING_TOP - ((int) LABEL_SIZE)) >> 1);
+        labelPosY = labelStartY;
     }
 
     @Override
@@ -119,7 +130,7 @@ public class _19_MaterialEditText extends AppCompatEditText {
 
     }
 
-    private AnimatorSet getShowLabelAnimator() {
+    private AnimatorSet getShowLabelAnim() {
         if (showLabelAnimatorSet != null) {
             return showLabelAnimatorSet;
         } else {
@@ -127,9 +138,9 @@ public class _19_MaterialEditText extends AppCompatEditText {
                     ObjectAnimator.ofFloat(this, "labelAlpha", 0, 1);
             ObjectAnimator animPos =
                     ObjectAnimator.ofFloat(this, "labelPosY",
-                            labelPosY, LABEL_PADDING_BOTTOM + LABEL_SIZE);
+                            labelStartY, LABEL_PADDING_BOTTOM + LABEL_SIZE);
             ObjectAnimator animColor =
-                    ObjectAnimator.ofInt(this, "labelColor", getCurrentHintTextColor(), LABEL_COLOR);
+                    ObjectAnimator.ofInt(this, "curColor", getCurrentHintTextColor(), labelColor);
             animColor.setEvaluator(new ArgbEvaluator());
             ObjectAnimator animSize =
                     ObjectAnimator.ofFloat(this, "labelSize", getTextSize(), LABEL_SIZE);
@@ -137,6 +148,33 @@ public class _19_MaterialEditText extends AppCompatEditText {
             showLabelAnimatorSet = new AnimatorSet();
             showLabelAnimatorSet.playTogether(animAlpha, animPos, animColor, animSize);
             return showLabelAnimatorSet;
+        }
+    }
+
+    private AnimatorSet getDisappearAnim() {
+        if (disappearAnimatorSet != null) {
+            return disappearAnimatorSet;
+        } else {
+            ObjectAnimator animAlpha =
+                    ObjectAnimator.ofFloat(this, "labelAlpha", 1, 0);
+            ObjectAnimator animPos =
+                    ObjectAnimator.ofFloat(this, "labelPosY",
+                            LABEL_PADDING_BOTTOM + LABEL_SIZE, labelStartY);
+            ObjectAnimator animColor =
+                    ObjectAnimator.ofInt(this, "curColor", labelColor, getCurrentHintTextColor());
+            animColor.setEvaluator(new ArgbEvaluator());
+            ObjectAnimator animSize =
+                    ObjectAnimator.ofFloat(this, "labelSize", LABEL_SIZE, getTextSize());
+
+            disappearAnimatorSet = new AnimatorSet();
+            disappearAnimatorSet.playTogether(animAlpha, animPos, animColor, animSize);
+            disappearAnimatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    setHint(label);
+                }
+            });
+            return disappearAnimatorSet;
         }
     }
 
@@ -156,12 +194,12 @@ public class _19_MaterialEditText extends AppCompatEditText {
         this.labelPosY = labelPosY;
     }
 
-    public int getLabelColor() {
-        return labelColor;
+    public int getCurColor() {
+        return curColor;
     }
 
-    public void setLabelColor(int labelColor) {
-        this.labelColor = labelColor;
+    public void setCurColor(int labelColor) {
+        this.curColor = labelColor;
         labelPaint.setColor(labelColor);
         labelPaint.setAlpha((int) (labelAlpha * 255));
         invalidate();
