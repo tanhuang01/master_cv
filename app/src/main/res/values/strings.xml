@@ -18,7 +18,8 @@
     <string name="l_16_fling_ball">滚动球</string>
     <string name="l_17_custom_text">图片文字</string>
     <string name="l_18_anim">翻页</string>
-    <string name="l_19_material">MaterialEditText</string>
+    <string name="l_19_material">MaterText</string>
+    <string name="l_20_tab_sign">TabSign</string>
 
 
 
