@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.congguangzi.master_cv.views._20_TabLayout.CustomFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -100,8 +100,6 @@
             android:text="another_text" />
 
 
-
-
     </com.congguangzi.master_cv.views._20_TabLayout.TabSignLayout>
 
 
@@ -120,7 +118,14 @@
             android:background="#44ff0000"
             android:text="test_text" />
 
+        <Button
+            android:id="@+id/bt_move_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Jump_to_pic" />
+
     </FrameLayout>
 
 
-</FrameLayout>
+</com.congguangzi.master_cv.views._20_TabLayout.CustomFrameLayout>
