@@ -25,8 +25,20 @@ custom view repository, just for exercising.
 
 ![](https://github.com/tanhuang01/master_cv/blob/master/pic/_17_text_pic.png)
 
-### 18.图片动画特效(1)
+### 18.图片特效(1)
 
 &nbsp;&nbsp;&nbsp;&nbsp; 这个图片特效感觉十分的给力, 所以就模仿了一下下. 具体实现 *_18_anim* 包下的代码.
 
 ![](https://github.com/tanhuang01/master_cv/blob/master/pic/_18_map_anim.gif)
+
+### 19.meteial_edit_text
+
+&nbsp;&nbsp;&nbsp;&nbsp; 仿写任务线大神的 MaterialEditText. 具体实现 *_19_MaterialEditText*.
+
+![](https://github.com/tanhuang01/master_cv/blob/master/pic/_19_meterial_degsin.gif)
+
+### 20. 图片缩放.
+
+&nbsp;&nbsp;&nbsp;&nbsp; 简单的图片缩放功能. *ScalePicView*
+
+![](https://github.com/tanhuang01/master_cv/blob/master/pic/_21_scale_pic.gif)
